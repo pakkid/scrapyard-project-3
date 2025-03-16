@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tank Control</title>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        .button { padding: 20px; font-size: 20px; margin: 5px; width: 100px; }
+    </style>
+</head>
+<body>
+    <h1>Tank Control</h1>
+    <button class="button" onclick="sendControl(100, 100)">Forward</button>
+    <br>
+    <button class="button" onclick="sendControl(-100, -100)">Reverse</button>
+    <br>
+    <button class="button" onclick="sendControl(100, -100)">Left</button>
+    <button class="button" onclick="sendControl(-100, 100)">Right</button>
+    <br>
+    <button class="button" onclick="sendControl(0, 0)">Stop</button>
+
+    <script>
+        var socket = io();
+
+        function sendControl(left, right) {
+            socket.emit("control", { left_speed: left, right_speed: right });
+        }
+    </script>
+</body>
+</html>
+22
